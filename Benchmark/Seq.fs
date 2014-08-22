@@ -11,6 +11,14 @@ let mkSeq f =
 
 let mkDelayedSeq (f: unit -> IEnumerable<'T>) = mkSeq (fun () -> f().GetEnumerator())
 
+let revArrayInPlaceUnchecked (arr: _[]) =
+    let len = arr.Length
+    for i = 0 to len / 2 - 1 do
+        let tmp = arr.[i]
+        arr.[i] <- arr.[(len - i) - 1]
+        arr.[(len - i) - 1] <- tmp
+    arr
+
 let rev (source:seq<'T>) =
     mkDelayedSeq (fun () ->
         source
@@ -31,3 +39,11 @@ let rev3 (source:seq<'T>) =
         for i = arrn - 1 downto 0 do
             yield arr.[i]
     }
+
+let rev4 (source:seq<'T>) =
+    mkDelayedSeq (fun () ->
+        source
+        |> Array.ofSeq
+        |> revArrayInPlaceUnchecked
+        :> seq<'T>)
+

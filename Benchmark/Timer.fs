@@ -1,6 +1,6 @@
 ﻿module Timer
 
-let create() = 
+let create() =
     let sw = System.Diagnostics.Stopwatch.StartNew()
-    fun () -> 
+    fun () ->
         sw.Elapsed
