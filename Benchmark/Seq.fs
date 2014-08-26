@@ -47,3 +47,11 @@ let rev4 (source:seq<'T>) =
         |> revArrayInPlaceUnchecked
         :> seq<'T>)
 
+// permute
+
+let permute f (source:seq<'T>) =
+    mkDelayedSeq (fun () ->
+    source
+    |> Seq.toArray
+    |> Array.permute f
+    :> seq<_>)

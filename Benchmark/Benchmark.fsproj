@@ -53,9 +53,13 @@
     <Compile Include="Timer.fs" />
     <Compile Include="Tests.fs" />
     <Compile Include="Seq.fs" />
+    <Compile Include="Benchmark.Core.fs" />
+    <Compile Include="Benchmark.Rev.fs" />
+    <Compile Include="Benchmark.Permute.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
     <None Include="Seq.rev.fsx" />
+    <None Include="Seq.permute.fsx" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

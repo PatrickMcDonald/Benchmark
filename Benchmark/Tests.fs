@@ -1,7 +1,7 @@
 ﻿module Tests
 
-let verifySeqsEqual s1 s2 =
-    match Seq.length s1, Seq.length s2 with
-    | a,b when a <> b -> failwith "Sequences have different length"
+let verifySeqsEqual expected actual =
+    match Seq.length expected, Seq.length actual with
+    | e,a when e <> a -> failwithf "Sequences have different length. Expected: %A; Actual: %A" e a
     | _ ->
-        Seq.zip s1 s2 |> Seq.iteri (fun i (a,b) -> if a <> b then failwithf "Sequences are different at index %d" i)
+        Seq.zip expected actual |> Seq.iteri (fun i (e,a) -> if e <> a then failwithf "Sequences are different at index %d. Expected: %A; Actual: %A" i e a)
